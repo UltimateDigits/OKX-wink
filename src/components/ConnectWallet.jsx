@@ -5,6 +5,7 @@ import Other from "./connectwallet/Other";
 
 const ConnectWallet = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState("okx"); 
+  
 
   if (!isOpen) return null;
 
@@ -50,7 +51,9 @@ const ConnectWallet = ({ isOpen, onClose }) => {
         </div>
 
        
-        {activeTab === "okx" ? <OkxWallet /> : <Other />}
+        {activeTab === "okx" ? <OkxWallet /> : <Other onClose={
+          onClose
+       } />}
       </div>
     </div>
   );

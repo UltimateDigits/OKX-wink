@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ethhero from "../assets/images/ethhero.png";
 import okxhero from "../assets/images/okxhero.png";
 import okxinput from "../assets/images/okxinput.png";
@@ -6,7 +6,9 @@ import Modal from "./Modal";
 import ConnectWallet from "./ConnectWallet";
 import Exchange from "./Exchange";
 import herologo from "../assets/images/herologo.png";
-
+import { eth } from "web3";
+import { Bridge } from "../integration";
+import { ethers } from "ethers";
 const Hero = () => {
   const [isEthereum, setIsEthereum] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,9 +17,24 @@ const Hero = () => {
     image: okxinput,
     head: "OKB",
     desc: "OKB Token",
+    address:"0x00"
   });
   const [inputValue, setInputValue] = useState("");
+  const [isConnected, setIsConnected] = useState(false); // State to track connection status
+  const [account, setAccount] = useState("");
+  useEffect(() => {
+    const checkConnection = async () => {
+      if (typeof window.ethereum !== "undefined") {
+        const accounts = await window.ethereum.request({ method: "eth_accounts" });
+        if (accounts.length > 0) {
+          setAccount(accounts[0]); // Store the connected account
+          setIsConnected(true); // Set connection status to true
+        }
+      }
+    };
 
+    checkConnection();
+  }, []);
   const handleSwap = () => {
     setIsEthereum((prev) => !prev);
   };
@@ -30,8 +47,27 @@ const Hero = () => {
     setIsModalOpen(false);
   };
 
-  const handleOpenWalletModal = () => {
-    setIsWalletModalOpen(true);
+  const handleOpenWalletModal = async () => {
+    if(!isConnected){
+      setIsWalletModalOpen(true);
+
+    }
+
+    if(isConnected){
+      console.log("sstarts briding");
+      console.log("input val",inputValue);
+      console.log("is eth",isEthereum);
+      console.log("token",selectedToken.address);
+      console.log("useer address",account);
+      let dest = isEthereum ? 3 : 1;
+      const amountInWei = ethers.utils.parseEther(inputValue);
+      console.log("amount un giwe", amountInWei);
+      try {
+        const res = await Bridge(inputValue, dest, account,amountInWei.toString(), selectedToken.address, true,[])
+      } catch (error) {
+        
+      }
+    }
   };
 
   const handleCloseWalletModal = () => {
@@ -162,9 +198,13 @@ const Hero = () => {
           className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph"
           onClick={handleOpenWalletModal}
         >
-          Connect wallet
-        </button>
-
+          {isConnected ? "Bridge" : "Connect Wallet"} {/* Conditional label */}
+          </button>
+          {isConnected && (
+          <p className="mt-2 text-gray-600 text-center">
+            Connected: {account.slice(0, 6)}...{account.slice(-4)} {/* Show short address */}
+          </p>
+        )}
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
