@@ -38,7 +38,7 @@ const OkxWallet = () => {
         </div>
         <button
           className="bg-black text-white font-medium  w-24 rounded-full py-3 text-sm mr-2 hover:text-ph"
-          // Open wallet modal on button click
+          
         >
           Add
         </button>

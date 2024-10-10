@@ -4,9 +4,9 @@ import OkxWallet from "./connectwallet/OkxWallet";
 import Other from "./connectwallet/Other";
 
 const ConnectWallet = ({ isOpen, onClose }) => {
-  const [activeTab, setActiveTab] = useState("okx"); // Default active tab is "okx"
+  const [activeTab, setActiveTab] = useState("okx"); 
 
-  if (!isOpen) return null; // Don't render if not open
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-5 font-custom ">
@@ -49,7 +49,7 @@ const ConnectWallet = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Conditionally render the active component */}
+       
         {activeTab === "okx" ? <OkxWallet /> : <Other />}
       </div>
     </div>

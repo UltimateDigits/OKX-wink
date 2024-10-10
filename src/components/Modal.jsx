@@ -7,37 +7,37 @@ import Options from "../constant";
 const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [filteredOptions, setFilteredOptions] = useState(Options); // Show all by default
+  const [filteredOptions, setFilteredOptions] = useState(Options); 
 
-  // Function to clear input and reset filtered options
+  
   const handleClear = () => {
     setInputValue("");
     setIsFocused(false);
-    setFilteredOptions(Options); // Reset to show all options
+    setFilteredOptions(Options); 
   };
 
-  // Function to handle input change and filter options based on head or desc
+  
   const handleInputChange = (value) => {
     setInputValue(value);
     setIsFocused(true);
 
-    // Filter options based on any part of the token name or description
+    
     const filtered = value
       ? Options.filter(
           (option) =>
             option.head.toLowerCase().includes(value.toLowerCase()) ||
             option.desc.toLowerCase().includes(value.toLowerCase())
         )
-      : Options; // Reset to show all options if input is empty
+      : Options; 
 
     setFilteredOptions(filtered);
   };
 
   const handleOptionClick = (option) => {
     onTokenSelect(option);
-    setInputValue(""); // Clear input after selecting option
+    setInputValue(""); 
     setIsFocused(false);
-    setFilteredOptions(Options); // Reset options
+    setFilteredOptions(Options); 
   };
 
   if (!isOpen) return null;
