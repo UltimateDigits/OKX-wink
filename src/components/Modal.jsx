@@ -3,6 +3,7 @@ import { LuSearch } from "react-icons/lu";
 import { VscClose } from "react-icons/vsc";
 import { IoCloseCircle } from "react-icons/io5";
 import Options from "../constant";
+import notfound from "../assets/images/notfound.png";
 
 const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -46,7 +47,9 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-2 font-custom ">
       <div className="bg-white rounded-lg relative border-b border-[#989898] w-[400px] h-full">
         <div className="flex items-center justify-between p-3 px-6 border-b-2 border-bor">
-          <p className="text-left font-semibold text-[#0b0b0b]">Select token</p>
+          <p className="text-left font-semibold text-[#0b0b0b] font-two">
+            Select token
+          </p>
           <button
             className="text-[#989898] font-semibold text-2xl hover:text-black hover:bg-modem rounded-md"
             onClick={onClose}
@@ -68,7 +71,7 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
             <input
               type="text"
               placeholder="Search by token name or address"
-              className={`outline-none border-none w-full font-light bg-modem text-[14px] transition duration-300 ${
+              className={`outline-none border-none w-full font-light bg-modem text-[14px] transition duration-300 font-two ${
                 isFocused || inputValue
                   ? "text-black bg-white"
                   : "bg-modem text-gray-500 group-hover:bg-white group-hover:text-black"
@@ -84,13 +87,16 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
                 onClick={handleClear}
               />
             )}
-
-
           </div>
-       
+
           <div className="flex flex-col">
             {inputValue && filteredOptions.length === 0 && (
-              <p className="text-center text-gray-500 py-2">No results found</p>
+              <div className="flex flex-col items-center justify-center pt-20">
+                <img src={notfound} alt="" className="w-[100px] h-[100px] " />
+                <p className="text-center text-black text-two font-semibold">
+                  No results found
+                </p>
+              </div>
             )}
             {filteredOptions.map((option) => (
               <div
@@ -104,18 +110,17 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
               >
                 <img src={option.image} alt="" className="h-[30px] w-[30px]" />
                 <div className="leading-5">
-                  <p className="text-left">{option.head}</p>
-                  <p className="text-[12px] text-left text-[#989898]">
+                  <p className="text-left font-four font-medium">
+                    {option.head}
+                  </p>
+                  <p className="text-[12px] text-left text-[#989898] font-two">
                     {option.desc}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-
-        
         </div>
-   
       </div>
     </div>
   );

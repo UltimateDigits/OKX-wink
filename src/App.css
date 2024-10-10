@@ -7,6 +7,94 @@
   text-align: center;
   background-color: white;
 }
+/* In src/fonts.css or src/App.css */
+@font-face {
+  font-family: 'one';
+  src: url('./assets/fonts/one.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'two';
+  src: url('./assets/fonts/two.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'three';
+  src: url('./assets/fonts/three.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'four';
+  src: url('./assets/fonts/four.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'five';
+  src: url('./assets/fonts/five.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'six';
+  src: url('./assets/fonts/six.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'seven';
+  src: url('./assets/fonts/seven.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'eight';
+  src: url('./assets/fonts/eight.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-one {
+  font-family: 'one', sans-serif;
+}
+
+.font-two {
+  font-family: 'two', sans-serif;
+}
+
+.font-three {
+  font-family: 'three', sans-serif;
+}
+
+.font-four {
+  font-family: 'four', sans-serif;
+}
+
+.font-five {
+  font-family: 'five', sans-serif;
+}
+
+.font-six {
+  font-family: 'six', sans-serif;
+}
+
+.font-seven {
+  font-family: 'seven', sans-serif;
+}
+
+.font-eight {
+  font-family: 'eight', sans-serif;
+}
 
 .logo {
   height: 6em;
