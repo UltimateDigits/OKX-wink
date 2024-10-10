@@ -22,6 +22,20 @@ const Hero = () => {
   const [inputValue, setInputValue] = useState("");
   const [isConnected, setIsConnected] = useState(false); // State to track connection status
   const [account, setAccount] = useState("");
+  const [balance, setBalance] = useState(""); 
+
+
+  const fetchBalance = async (account) => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum); // Create a provider
+      const balanceInWei = await provider.getBalance(account); // Get balance in Wei
+      const balanceInEth = ethers.utils.formatEther(balanceInWei); // Convert Wei to Ether
+      const limitedBalance = parseFloat(balanceInEth).toFixed(6);
+      
+      setBalance(limitedBalance);     } catch (error) {
+      console.error("Error fetching balance:", error);
+    }
+  };
   useEffect(() => {
     const checkConnection = async () => {
       if (typeof window.ethereum !== "undefined") {
@@ -29,12 +43,30 @@ const Hero = () => {
         if (accounts.length > 0) {
           setAccount(accounts[0]); // Store the connected account
           setIsConnected(true); // Set connection status to true
+          await fetchBalance(accounts[0]); 
         }
       }
     };
 
     checkConnection();
   }, []);
+
+  const fetchBalanceBasedOnNetwork = async (account) => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum); // Create a provider
+      const balanceInWei = await provider.getBalance(account); // Get balance in Wei
+      const balanceInEth = ethers.utils.formatEther(balanceInWei); // Convert Wei to Ether
+      const limitedBalance = parseFloat(balanceInEth).toFixed(6);
+      
+      setBalance(limitedBalance);     } catch (error) {
+      console.error("Error fetching balance:", error);
+    }
+  };
+
+
+  useEffect(()=>{
+
+  },[selectedToken])
   const handleSwap = () => {
     setIsEthereum((prev) => !prev);
   };
@@ -166,8 +198,9 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="bg-empty rounded-[8px] mt-5 p-3 px-[16px] flex items-center">
-          <input
+        <div className="bg-empty rounded-[8px] mt-5 p-3 px-[16px] flex-col items-center">
+       <div className="flex">
+       <input
             type="text"
             placeholder="0.00"
             value={inputValue}
@@ -184,6 +217,8 @@ const Hero = () => {
               className="h-[20px] w-[20px]"
             />
             <p className="pl-1">{selectedToken.head}</p>
+          
+         
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1.5em"
@@ -193,24 +228,32 @@ const Hero = () => {
               <path fill="none" stroke="black" d="M4.5 6L8 9.5L11.5 6" />
             </svg>
           </button>
+       </div>
+{
+  isConnected && (
+    <div className="flex justify-end">Balance: {balance} ETH </div>
+
+  )
+}       
         </div>
+      
+
         <button
           className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph"
           onClick={handleOpenWalletModal}
         >
           {isConnected ? "Bridge" : "Connect Wallet"} {/* Conditional label */}
           </button>
-          {isConnected && (
-          <p className="mt-2 text-gray-600 text-center">
-            Connected: {account.slice(0, 6)}...{account.slice(-4)} {/* Show short address */}
-          </p>
-        )}
+    
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           onTokenSelect={handleTokenSelect}
           selectedToken={selectedToken}
+          balance={balance}
         />
+
+      
 
         <ConnectWallet
           isOpen={isWalletModalOpen}

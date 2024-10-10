@@ -4,7 +4,7 @@ import { VscClose } from "react-icons/vsc";
 import { IoCloseCircle } from "react-icons/io5";
 import Options from "../constant";
 
-const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken }) => {
+const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState(Options); 
@@ -84,7 +84,10 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken }) => {
                 onClick={handleClear}
               />
             )}
+
+
           </div>
+       
           <div className="flex flex-col">
             {inputValue && filteredOptions.length === 0 && (
               <p className="text-center text-gray-500 py-2">No results found</p>
@@ -109,7 +112,10 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken }) => {
               </div>
             ))}
           </div>
+
+        
         </div>
+   
       </div>
     </div>
   );
