@@ -44,7 +44,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="border border-bor rounded-lg shadow-md px-7 py-8 w-[496px]">
+    <div className="border border-bor rounded-lg shadow-md px-7 py-8 w-[496px] bg-white">
       <h1 className="font-bold text-2xl leading-8 text-left">Bridge</h1>
       <div className="flex gap-2 items-center mt-5">
         <div className="bg-[#f7f7f7] rounded-md p-[18px] px-[14px] w-1/2 flex items-center gap-2">

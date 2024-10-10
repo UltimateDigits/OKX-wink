@@ -9,7 +9,7 @@ const ConnectWallet = ({ isOpen, onClose }) => {
   if (!isOpen) return null; // Don't render if not open
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-24 font-custom">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-24 font-custom ">
       <div className="bg-white relative border-b border-[#989898] w-[580px] h-full rounded-3xl ">
         <div className="pt-[43px] pr-[32px] pb-[37px] pl-[32px]">
           <h2 className="text-[32px] font-bold leading-[132%] mb-2 text-left">
