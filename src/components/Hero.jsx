@@ -44,7 +44,7 @@ const Hero = () => {
 
   return (
     <div>
-     <img src={herologo} alt="" className="bg-black p-[5px] rounded-md h-[37px] w-[87px] mx-auto my-4"/>
+     <img src={herologo} alt="" className="bg-black p-[5px] rounded-md h-[37px] w-[87px] mx-auto mb-4"/>
      
       <div className="border border-bor rounded-lg shadow-md px-7 py-8 w-[496px] bg-white">
         <h1 className="font-bold text-2xl leading-8 text-left">Bridge</h1>
