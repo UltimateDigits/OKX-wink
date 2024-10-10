@@ -17,7 +17,7 @@ const Hero = () => {
     image: okxinput,
     head: "OKB",
     desc: "OKB Token",
-    address:"0x00"
+    address:"0x75231F58b43240C9718Dd58B4967c5114342a86c"
   });
   const [inputValue, setInputValue] = useState("");
   const [isConnected, setIsConnected] = useState(false); // State to track connection status
