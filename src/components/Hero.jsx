@@ -92,14 +92,14 @@ const Hero = () => {
 
 
   return (
-    <div>
+    <div className="bg-white">
       <img
         src={herologo}
         alt=""
         className="bg-black p-[5px] rounded-md h-[37px] w-[87px] mx-auto mb-4"
       />
 
-      <div className="border border-bor rounded-lg shadow-md px-7 py-8 w-[496px] bg-white">
+      <div className="border border-bor rounded-lg shadow-md px-7 py-8 w-[496px] ">
         <h1 className="font-bold text-2xl leading-8 text-left">Bridge</h1>
         <div className="flex gap-2 items-center mt-5">
           <div className="bg-empty rounded-md p-[18px] px-[14px] w-1/2 flex items-center gap-2">
