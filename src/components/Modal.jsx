@@ -43,7 +43,7 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-5 font-custom ">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-2 font-custom ">
       <div className="bg-white rounded-lg relative border-b border-[#989898] w-[400px] h-full">
         <div className="flex items-center justify-between p-3 px-6 border-b-2 border-bor">
           <p className="text-left font-semibold text-[#0b0b0b]">Select token</p>
@@ -92,7 +92,7 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken }) => {
             {filteredOptions.map((option) => (
               <div
                 key={option.id}
-                className={`flex mx-3 px-3 gap-3 items-center rounded-md py-[10px] ${
+                className={`flex mx-3 px-3 gap-3 items-center rounded-md py-[8px] ${
                   option.head === selectedToken?.head
                     ? "bg-modem"
                     : "hover:bg-modem"
