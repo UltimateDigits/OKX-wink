@@ -9,7 +9,7 @@ const OkxWallet = () => {
       <div className="bg-[#f9f9f9] rounded-[12px] flex justify-between mt-[24px] p-[14px] pl-[22px]">
         <div className="flex gap-3 bg-modem rounded-md">
           <img src={okswal} alt="" className="h-[35px] w-[35px]" />
-          <div className="text-left ml-[16px]">
+          <div className="text-left ml-[2px]">
             <p className="text-[18px] font-medium leading-[24px] ">OKX app</p>
             <p className="text-[#909090] text-[14px] leading-[16px] mb-[52px] mt-[8px]">
               Scan QR code to connect your wallet
@@ -30,14 +30,14 @@ const OkxWallet = () => {
             <img src={chrome} alt="" className=" absolute h-[25px] w-[25px] -right-2 -bottom-2" />
           </div>
 
-          <div className="text-left ml-[16px]">
+          <div className="text-left ml-[2px]">
             <p className="text-[18px] font-medium leading-[24px] ">
               Add wallet extension to Chrome
             </p>
           </div>
         </div>
         <button
-          className="bg-black text-white font-medium  w-24 rounded-full py-3 text-sm  hover:text-ph"
+          className="bg-black text-white font-medium  w-24 rounded-full py-3 text-sm mr-2 hover:text-ph"
           // Open wallet modal on button click
         >
           Add
