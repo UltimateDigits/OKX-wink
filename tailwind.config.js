@@ -4,18 +4,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        custom: [
-          "HarmonyOS Sans",
-          "PingFang SC",
-          "OSPunctuation",
-          "Microsoft Yahei",
-          "Heiti SC",
-          "WenQuanYi Micro Hei",
-          "Helvetica Neue",
-          "Helvetica",
-          "Arial",
-          "sans-serif",
-        ],
+        harmony: ['"HarmonyOS Sans"', "sans-serif"],
+        pingfang: ['"PingFang SC"', "sans-serif"],
+        ospunctuation: ["OSPunctuation", "sans-serif"],
+        yahei: ['"Microsoft Yahei"', "sans-serif"],
+        heiti: ['"Heiti SC"', "sans-serif"],
+        wenquanyi: ['"WenQuanYi Micro Hei"', "sans-serif"],
+        helveticaneue: ['"Helvetica Neue"', "sans-serif"],
+        helvetica: ["Helvetica", "sans-serif"],
+        arial: ["Arial", "sans-serif"],
+        sanserif: ["sans-serif"],
       },
       colors: {
         empty: "#f7f7f7",
