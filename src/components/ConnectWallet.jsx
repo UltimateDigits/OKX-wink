@@ -3,20 +3,20 @@ import { VscClose } from "react-icons/vsc";
 import OkxWallet from "./connectwallet/OkxWallet";
 import Other from "./connectwallet/Other";
 
-const ConnectWallet = ({ isOpen, onClose }) => {
+const ConnectWallet = ({ isOpen, onClose,isConnected }) => {
   const [activeTab, setActiveTab] = useState("okx"); 
   
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-5 font-custom ">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-5 ">
       <div className="bg-white relative border-b border-[#989898] w-[510px] h-full rounded-3xl ">
         <div className="pt-[43px] pr-[32px] pb-[37px] pl-[32px]">
-          <h2 className="text-[32px] font-bold leading-[132%] mb-2 text-left">
+          <h2 className="text-[32px] font-bold leading-[132%] mb-2 text-left font-one">
             Connect Wallet
           </h2>
-          <p className="text-[#a8a8a8] text-base leading-5 text-left">
+          <p className="text-[#a8a8a8] text-base leading-5 text-left font-two">
             Securely start your Web3 journey
           </p>
         </div>
@@ -29,7 +29,7 @@ const ConnectWallet = ({ isOpen, onClose }) => {
 
         <div className="flex mx-[32px] border-b-2 border-bor">
           <div
-            className={`text-lg font-medium leading-5 px-6 pb-3 cursor-pointer ${
+            className={`text-lg font-normal leading-5 px-6 pb-3 cursor-pointer font-four ${
               activeTab === "okx"
                 ? "text-black border-b-2 border-black"
                 : "text-[#989898]"
@@ -39,7 +39,7 @@ const ConnectWallet = ({ isOpen, onClose }) => {
             OKX Wallet
           </div>
           <div
-            className={`text-lg font-medium leading-5 px-6 pb-3 cursor-pointer ${
+            className={`text-lg font-normal font-four leading-5 px-6 pb-3 cursor-pointer ${
               activeTab === "other"
                 ? "text-black border-b-2 border-black"
                 : "text-[#989898]"
@@ -50,10 +50,7 @@ const ConnectWallet = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-       
-        {activeTab === "okx" ? <OkxWallet /> : <Other onClose={
-          onClose
-       } />}
+        {activeTab === "okx" ? <OkxWallet /> : <Other onClose={onClose} isConnected={isConnected} />}
       </div>
     </div>
   );
