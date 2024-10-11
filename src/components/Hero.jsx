@@ -307,6 +307,10 @@ setGasFee(gas.slice(0,8))
     setIsConnected(false);  // Handle network changes
     console.log('Disconnected due to network change');
   };
+
+   const resetInput = () => {
+     setInputValue(""); // Reset the input value to an empty string
+   };
   
   // Add event listeners for account and chain changes
   // if (window.ethereum) {
@@ -321,15 +325,20 @@ setGasFee(gas.slice(0,8))
         className="bg-black p-[5px] rounded-md h-[37px] w-[87px] mx-auto mb-4"
       />
 
-      <div className="border border-bor rounded-lg shadow-md px-7 py-8 w-[496px] ">
+      <div className="border border-bor rounded-lg shadow-md px-7 py-3 w-[496px] ">
         <h1 className="font-bold text-2xl leading-8 text-left font-one">
           Bridge
         </h1>
 
         <div className="flex justify-end">
-    {isConnected &&      <button className="py-3 px-4 bg-red-700 rounded-lg text-white font-bold"  onClick={disconnectWallet}>
-         Disconnect
-         </button>}
+          {isConnected && (
+            <button
+              className="py-3 px-4 bg-red-700 rounded-lg text-white font-bold font-one"
+              onClick={disconnectWallet}
+            >
+              Disconnect
+            </button>
+          )}
         </div>
         <div className="flex gap-2 items-center mt-5">
           <div className="bg-empty rounded-md p-[18px] px-[14px] w-1/2 flex items-center gap-2">
@@ -360,7 +369,7 @@ setGasFee(gas.slice(0,8))
           </div>
         </div>
 
-        <div className="bg-empty rounded-[8px] mt-5 p-3 px-[16px] flex-col items-center">
+        <div className="bg-empty rounded-[8px] mt-5 p-2 px-[16px] flex-col items-center">
           <div className="flex items-center">
             <input
               type="text"
@@ -395,29 +404,30 @@ setGasFee(gas.slice(0,8))
           )}
         </div>
 
-      { isConnected && inputValue.length >0  &&
+        {isConnected && inputValue.length > 0 && (
           <button
-          className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
-          onClick={handleOpenWalletModal}
-        >
-         Bridge
-        </button>
-      }
-      { isConnected && inputValue.length == 0  &&
+            className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
+            onClick={handleOpenWalletModal}
+          >
+            Bridge
+          </button>
+        )}
+        {isConnected && inputValue.length == 0 && (
           <button
-          className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full py-4 text-lg mt-5  hover:text-ph font-one cursor-not-allowed" disabled
-        >
-         Bridge
-        </button>
-      }
-      { !isConnected && 
+            className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full py-4 text-lg mt-5  hover:text-ph font-one cursor-not-allowed"
+            disabled
+          >
+            Bridge
+          </button>
+        )}
+        {!isConnected && (
           <button
-          className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
-          onClick={handleOpenWalletModal}
-        >
-         Connect Wallet
-        </button>
-      }
+            className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
+            onClick={handleOpenWalletModal}
+          >
+            Connect Wallet
+          </button>
+        )}
 
         {/* <button
           className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
@@ -427,7 +437,15 @@ setGasFee(gas.slice(0,8))
         </button> */}
 
         {Confirm && (
-          <ConfirmTransaction onClose={handleCloseConfirmTransaction} isEthereum={isEthereum} tokenAddress={selectedToken} networkFee={gasFee} value={inputValue} account={account}  />
+          <ConfirmTransaction
+            onClose={handleCloseConfirmTransaction}
+            isEthereum={isEthereum}
+            tokenAddress={selectedToken}
+            networkFee={gasFee}
+            value={inputValue}
+            account={account}
+            resetInput={resetInput}
+          />
         )}
 
         <Modal
@@ -444,11 +462,14 @@ setGasFee(gas.slice(0,8))
           isConnected={setIsConnected}
         />
 
-
         {/* {isConnected && <p>{account}</p>} */}
 
         {/* {conflict && <p>switch network</p> } */}
       </div>
+
+      <p className="text-black text-base font-semibold text-center leading-5 pt-2 font-two">
+        Powered by Winks.fun
+      </p>
     </div>
   );
 };

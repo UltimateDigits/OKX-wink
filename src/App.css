@@ -131,3 +131,46 @@
   opacity: 1;
   
 }
+
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f8ff;
+}
+
+.success-message {
+  animation: fadeIn 2s ease-in-out;
+}
+
+.success-icon {
+
+  animation: bounce 1s infinite;
+}
+
+
+
+
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

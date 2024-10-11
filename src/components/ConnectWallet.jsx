@@ -50,7 +50,11 @@ const ConnectWallet = ({ isOpen, onClose,isConnected }) => {
           </div>
         </div>
 
-        {activeTab === "okx" ? <OkxWallet /> : <Other onClose={onClose} isConnected={isConnected} />}
+        {activeTab === "okx" ? (
+          <OkxWallet onClose={onClose} isConnected={isConnected} />
+        ) : (
+          <Other onClose={onClose} isConnected={isConnected} />
+        )}
       </div>
     </div>
   );

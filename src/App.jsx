@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import Hero from './components/Hero';
 import ConfirmTransaction from './components/ConfirmTransaction';
+import Successfull from './components/Successfull';
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 
 import '@rainbow-me/rainbowkit/styles.css';
@@ -52,7 +53,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
       <div className="h-screen font-custom flex justify-center items-center ">
-        {/* <ConfirmTransaction/> */}
+        {/* <Successfull/> */}
         <Hero/>
       </div>
       </RainbowKitProvider>

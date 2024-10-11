@@ -3,54 +3,54 @@ import okswal from '../../assets/images/okxwal.png'
 import chrome from '../../assets/images/chrome.png'
 import scan from '../../assets/images/scan.png'
 
-const OkxWallet = () => {
+const OkxWallet = ({ onClose, isConnected }) => {
+
+
+  // OKX Wallet connection function
+  const handleConnectOKX = async () => {
+    if (typeof window.okxwallet !== 'undefined') { // Ensure OKX wallet has a distinct provider
+      try {
+        await window.okxwallet.request({ method: 'eth_requestAccounts' });
+        console.log('OKX Wallet is connected');
+        isConnected(true); // Set the connection status
+        onClose(); // Close the modal
+      } catch (error) {
+        console.error('Error connecting to OKX Wallet:', error);
+      }
+    } else if (typeof window.ethereum !== 'undefined' && !window.ethereum.isMetaMask) {
+      // If OKX overrides window.ethereum
+      try {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        console.log('OKX Wallet is connected');
+        isConnected(true); // Set the connection status
+        onClose(); // Close the modal
+      } catch (error) {
+        console.error('Error connecting to OKX Wallet via window.ethereum:', error);
+      }
+    } else {
+      alert('OKX Wallet is not installed. Please install OKX Wallet to use this feature.');
+    }
+  };
+
+
   return (
-    <div className="pt-0 px-[32px] pb-[16px]">
-      <div className="bg-[#f9f9f9] rounded-[12px] flex justify-between mt-[24px] p-[14px] pl-[22px]">
-        <div className="flex gap-3 bg-modem rounded-md">
-          <img src={okswal} alt="" className="h-[35px] w-[35px]" />
-          <div className="text-left ml-[2px]">
-            <p className="text-[18px] font-normal font-four leading-[24px] ">
-              OKX app
-            </p>
-            <p className="text-[#909090] text-[14px] leading-[16px] mb-[52px] mt-[8px] font-four font-medium">
-              Scan QR code to connect your wallet
-            </p>
-            <p className="text-[#a8a8a8] text-[13px] font-two">
-              Not installed yet?{" "}
-              <span className="text-[#000000a0] font-two font-light">
-                Download
-              </span>
-            </p>
-          </div>
-        </div>
+    <div className="px-[32px] pt-6">
 
-        <img src={scan} alt="" className="h-[106px] w-[106px]" />
-      </div>
-
-      <div className="bg-[#f9f9f9] rounded-[12px] flex justify-between mt-[24px] p-[14px] pl-[22px]">
-        <div className="flex gap-3 bg-modem rounded-md items-center">
-          <div className="relative">
-            <img src={okswal} alt="" className="h-[35px] w-[35px] relative" />
-            <img
-              src={chrome}
-              alt=""
-              className=" absolute h-[25px] w-[25px] -right-2 -bottom-2"
-            />
-          </div>
-
-          <div className="text-left ml-[2px]">
-            <p className="text-[18px] font-normal font-four  leading-[24px]  ">
-              Add wallet extension to Chrome
-            </p>
-          </div>
-        </div>
-        <button className="bg-black text-white font-medium  w-24 rounded-full py-3 text-sm mr-2 hover:text-ph font-four h-fit ">
-          Add
+      <div className="flex ">
+        <button
+          className="w-[153px] h-[118px] flex flex-col items-center border rounded-2xl justify-center hover:border-ph hover:border-2 cursor-pointer"
+          onClick={handleConnectOKX}
+        >
+          <img src={okswal} alt="" className="h-[48px] w-[48px]" />
+          <p className="text-[#3d3d3d] text-[15px] font-medium leading-5 mb-2 mt-1 text-center font-four">
+            OKX
+          </p>
         </button>
       </div>
+      {/* <WalletButton wallet="metamask" /> */}
+      {/* <WalletButton wallet="okx" /> */}
     </div>
   );
-}
+};
 
 export default OkxWallet
