@@ -327,9 +327,9 @@ setGasFee(gas.slice(0,8))
         </h1>
 
         <div className="flex justify-end">
-         <button className="py-3 px-4 bg-red-700 rounded-lg text-white font-bold"  onClick={disconnectWallet}>
+    {isConnected &&      <button className="py-3 px-4 bg-red-700 rounded-lg text-white font-bold"  onClick={disconnectWallet}>
          Disconnect
-         </button>
+         </button>}
         </div>
         <div className="flex gap-2 items-center mt-5">
           <div className="bg-empty rounded-md p-[18px] px-[14px] w-1/2 flex items-center gap-2">
