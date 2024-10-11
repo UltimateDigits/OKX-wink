@@ -17,9 +17,11 @@ const ConfirmTransaction = ({ onClose, isEthereum , value, networkFee, inDollor,
       const destAdress = isEthereum ? tokenAddress.ETHaddress : tokenAddress.Xaddress;
       const amountInWei =  ethers.utils.parseEther(value.toString());
 
-      const res = await Bridge(value, destinationChain, account, amountInWei,destAdress,true,"0x" );
+      const res = await Bridge(value, destinationChain, account, amountInWei.toString(),destAdress,true,"0x" );
 
       console.log("res");
+
+      onClose()
       
     } catch (error) {
       console.log("error",error)

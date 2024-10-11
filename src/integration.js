@@ -39,17 +39,30 @@ export const Bridge = async (amount, destinationNetwork, destinationAddress, amo
   console.log("contract", contract);
 
  try {
+  if(tokenAddress === "0x0000000000000000000000000000000000000000"){
     const tx = await contract.bridgeAsset(
-        destinationNetwork, destinationAddress, amountinWei, tokenAddress, forceUpdate, permitData,{
-            value:amountinWei,
-            gasLimit: 250000         }
-          );
-        
-          await tx.wait();
-        
-          console.log("tx", tx);
-          return tx;
-
+      destinationNetwork, destinationAddress, amountinWei, tokenAddress, forceUpdate, permitData,{
+          value:amountinWei,
+          gasLimit: 300000         }
+        );
+      
+        await tx.wait();
+      
+        console.log("tx", tx);
+        return tx;
+  }
+else{
+  const tx = await contract.bridgeAsset(
+    destinationNetwork, destinationAddress, amountinWei, tokenAddress, forceUpdate, permitData,{
+     
+        gasLimit: 300000         }
+      );
+    
+      await tx.wait();
+    
+      console.log("tx", tx);
+      return tx;
+}
         
  } catch (error) {
     console.log("erior",error);
