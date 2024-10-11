@@ -83,8 +83,8 @@ const Other = ({onClose,isConnected}) => {
       </div> */}
 
       <div className='flex justify-between'>
-        <button onClick={handleConnectMetaMask}>Metamask</button>
-        <button onClick={handleConnectOKX}>OKX</button>
+        <button className='py-3 px-5 bg-white rounded-lg border-2' onClick={handleConnectMetaMask}>Metamask</button>
+        <button className='py-3 px-5 bg-white rounded-lg border-2'  onClick={handleConnectOKX}>OKX</button>
       </div>
       {/* <WalletButton wallet="metamask" /> */}
       {/* <WalletButton wallet="okx" /> */}
