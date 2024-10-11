@@ -23,6 +23,7 @@ const Hero = () => {
   const [isConnected, setIsConnected] = useState(false); // State to track connection status
   const [account, setAccount] = useState("");
   const [balance, setBalance] = useState(""); 
+  const [currentNetwork, setCurrentNetwork] = useState(""); // New state to track the current network
 
 
   const fetchBalance = async (account) => {
@@ -44,12 +45,24 @@ const Hero = () => {
           setAccount(accounts[0]); // Store the connected account
           setIsConnected(true); // Set connection status to true
           await fetchBalance(accounts[0]); 
+          await checkNetwork();
         }
       }
     };
 
     checkConnection();
   }, []);
+
+  const checkNetwork = async () => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const network = await provider.getNetwork(); // Get the current network
+      setCurrentNetwork(network.name); // Store the current network name
+      console.log("net",network.name);
+    } catch (error) {
+      console.error("Error fetching network:", error);
+    }
+  };
 
   const fetchBalanceBasedOnNetwork = async (account) => {
     try {
@@ -58,7 +71,9 @@ const Hero = () => {
       const balanceInEth = ethers.utils.formatEther(balanceInWei); // Convert Wei to Ether
       const limitedBalance = parseFloat(balanceInEth).toFixed(6);
       
-      setBalance(limitedBalance);     } catch (error) {
+      setBalance(limitedBalance);   
+      await checkNetwork();
+      } catch (error) {
       console.error("Error fetching balance:", error);
     }
   };
@@ -69,6 +84,8 @@ const Hero = () => {
   },[selectedToken])
   const handleSwap = () => {
     setIsEthereum((prev) => !prev);
+    checkNetwork(); // Check network after swapping
+
   };
 
   const handleOpenModal = () => {
@@ -83,6 +100,11 @@ const Hero = () => {
     if(!isConnected){
       setIsWalletModalOpen(true);
 
+    }
+
+    if(isEthereum && currentNetwork !== "homestead" || !isEthereum && currentNetwork === "homestead"){
+      changeNetwork()
+      return;
     }
 
     if(isConnected){
@@ -102,6 +124,52 @@ const Hero = () => {
     }
   };
 
+  const changeNetwork = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const networkName = isEthereum ? "homestead" : "x-layer"; // Adjust based on your network names
+
+    const networks = {
+        homestead: {
+            chainId: "0x1", // Mainnet
+            chainName: "Ethereum Mainnet",
+            nativeCurrency: {
+                name: "Ether",
+                symbol: "ETH",
+                decimals: 18,
+            },
+            rpcUrls: ["https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID"], // Replace with actual RPC URL
+        },
+        "x-layer": {
+            chainId: "0xc4", // Replace with your X Layer chain ID
+            chainName: "X Layer Mainnet",
+            nativeCurrency: {
+                name: "X Token",
+                symbol: "OKB",
+                decimals: 18,
+            },
+            rpcUrls: ["https://wallet.okex.org/fullnode/xlayer/discover/rpc/ro"], // Replace with actual RPC URL
+        },
+    };
+
+    try {
+        const currentNetwork = await provider.getNetwork();
+        const desiredNetwork = networks[networkName];
+
+        if (currentNetwork.chainId !== parseInt(desiredNetwork.chainId, 16)) {
+            // Network is not the desired one, attempt to add it
+            await provider.send("wallet_addEthereumChain", [desiredNetwork]);
+            console.log("Network added:", desiredNetwork.chainName);
+        } else {
+            // Switch to the network if it's already present
+            await provider.send("wallet_switchEthereumChain", [{ chainId: desiredNetwork.chainId }]);
+            console.log("Switched to network:", desiredNetwork.chainName);
+        }
+        
+        await checkNetwork(); // Check the network again after switching
+    } catch (error) {
+        console.error("Failed to switch or add network:", error);
+    }
+};
   const handleCloseWalletModal = () => {
     setIsWalletModalOpen(false);
   };
@@ -242,7 +310,17 @@ const Hero = () => {
           className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph"
           onClick={handleOpenWalletModal}
         >
-          {isConnected ? "Bridge" : "Connect Wallet"} {/* Conditional label */}
+          {/* {isConnected ? "Bridge" : "Connect Wallet"} Conditional label */}
+          {isConnected && currentNetwork === (isEthereum ? "homestead" : "x-layer") ? "Bridge" : "Switch to correct network"}
+
+          </button>
+        <button
+          className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph"
+          onClick={handleOpenWalletModal}
+        >
+          {/* {isConnected ? "Bridge" : "Connect Wallet"} Conditional label */}
+          {isConnected && currentNetwork === (isEthereum ? "homestead" : "x-layer") ? "Bridge" : "Switch to correct network"}
+
           </button>
     
         <Modal
