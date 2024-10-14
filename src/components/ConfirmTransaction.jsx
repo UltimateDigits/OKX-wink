@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PiApproximateEqualsBold } from "react-icons/pi";
 import { FaArrowRight } from "react-icons/fa6";
-
 import ethhero from "../assets/images/ethhero.png";
 import okxhero from "../assets/images/okxhero.png";
-import { okc } from "viem/chains";
 import { Bridge } from "../integration";
 import { ethers } from "ethers";
 import Successfull from "./Successfull";
+import ErrorTransaction from "./ErrorTransaction"; 
 
 const ConfirmTransaction = ({
   onClose,
@@ -19,31 +18,55 @@ const ConfirmTransaction = ({
   account,
   resetInput,
 }) => {
-  console.log("networkFee", networkFee);
-  console.log("tok", tokenAddress);
-
   const [confirm, setConfirm] = useState(false);
+  const [transactionError, setTransactionError] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false); 
 
   const handleTransaction = async () => {
+    setIsProcessing(true); 
     try {
-      setConfirm(true); // Show the success message
-
       const destinationChain = isEthereum ? 3 : 1;
       const destAdress = isEthereum
         ? tokenAddress.ETHaddress
         : tokenAddress.Xaddress;
       const amountInWei = ethers.utils.parseEther(value.toString());
 
-      // const res = await Bridge(value, destinationChain, account, amountInWei.toString(), destAdress, true, "0x");
-      resetInput(); // Call resetInput to clear the input box
-      // Set a 2-second delay before closing the modal
-      setTimeout(() => {
-        onClose(); // Close the modal after showing success
-      }, 2000);
+      const res = await Bridge(
+        value,
+        destinationChain,
+        account,
+        amountInWei.toString(),
+        destAdress,
+        true,
+        "0x"
+      );
+
+      if (res && res.status === "success") {
+        setConfirm(true);
+        resetInput();
+        setTimeout(() => {
+          onClose();
+        }, 2000);
+      } else {
+        setTransactionError(true);
+      }
     } catch (error) {
       console.log("error", error);
+      setTransactionError(true);
+    } finally {
+      setIsProcessing(false); 
     }
   };
+
+  
+  useEffect(() => {
+    if (transactionError) {
+      setTimeout(() => {
+        onClose();
+        resetInput();
+      }, 2000); 
+    }
+  }, [transactionError, onClose, resetInput]);
 
   return (
     <div>
@@ -51,6 +74,8 @@ const ConfirmTransaction = ({
         <div className="bg-white relative border-b border-[#989898] w-[400px] rounded-md p-5">
           {confirm ? (
             <Successfull />
+          ) : transactionError ? (
+            <ErrorTransaction />
           ) : (
             <div>
               <h1 className="font-bold text-base leading-5 font-one text-left">
@@ -101,11 +126,11 @@ const ConfirmTransaction = ({
               </div>
 
               <div className="flex justify-between items-center mt-7">
-                <p className="text-left text-[#989898] font-two  font-medium text-sm">
+                <p className="text-left text-[#989898] font-two font-medium text-sm">
                   Ethereum network fee
                 </p>
                 <div className="flex items-center gap-1">
-                  <p className="text-right  font-two text-sm">
+                  <p className="text-right font-two text-sm">
                     {networkFee} ETH
                   </p>
                   <PiApproximateEqualsBold className="text-[12px] text-[#989898]" />
@@ -116,15 +141,15 @@ const ConfirmTransaction = ({
               </div>
 
               <div className="flex justify-between items-center mt-1">
-                <p className="text-left text-[#989898] font-two  font-medium text-sm">
+                <p className="text-left text-[#989898] font-two font-medium text-sm">
                   Est arrival time
                 </p>
-                <p className="text-right  font-two text-sm">15 minutes</p>
+                <p className="text-right font-two text-sm">15 minutes</p>
               </div>
 
               <div className="mt-7 flex justify-between items-center gap-4">
                 <button
-                  onClick={onClose} // Call the onClose function to close the modal
+                  onClick={onClose}
                   className="bg-[#F5F5F5] hover:bg-black text-black font-bold py-2 w-full border border-black hover:text-white rounded-full"
                 >
                   Cancel
@@ -133,8 +158,9 @@ const ConfirmTransaction = ({
                 <button
                   className="bg-black hover:bg-white text-white hover:text-black font-bold py-2 w-full border border-black rounded-full"
                   onClick={handleTransaction}
+                  disabled={isProcessing} 
                 >
-                  Confirm
+                  {isProcessing ? "Processing..." : "Confirm"}
                 </button>
               </div>
             </div>
