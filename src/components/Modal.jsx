@@ -101,20 +101,33 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
             {filteredOptions.map((option) => (
               <div
                 key={option.id}
-                className={`flex mx-3 px-3 gap-3 items-center rounded-md py-[8px] ${
+                className={`flex mx-3 px-3 gap-3 items-center justify-between  rounded-md py-[8px] ${
                   option.head === selectedToken?.head
                     ? "bg-modem"
                     : "hover:bg-modem"
                 }`}
                 onClick={() => handleOptionClick(option)}
               >
-                <img src={option.image} alt="" className="h-[30px] w-[30px]" />
-                <div className="leading-5">
-                  <p className="text-left font-four font-medium">
-                    {option.head}
-                  </p>
-                  <p className="text-[12px] text-left text-[#989898] font-two">
-                    {option.desc}
+                <div className="flex  gap-3 items-center">
+                  <img
+                    src={option.image}
+                    alt=""
+                    className="h-[30px] w-[30px]"
+                  />
+                  <div className="leading-5">
+                    <p className="text-left font-four font-medium">
+                      {option.head}
+                    </p>
+                    <p className="text-[12px] text-left text-[#989898] font-two">
+                      {option.desc}
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-right font-four font-medium">0.00</p>
+                  <p className="text-[12px] text-right text-[#989898] font-two">
+                    0.00
                   </p>
                 </div>
               </div>

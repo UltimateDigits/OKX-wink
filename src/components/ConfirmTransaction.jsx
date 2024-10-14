@@ -41,7 +41,7 @@ const ConfirmTransaction = ({
         "0x"
       );
 
-      if (res && res.status === "success") {
+      if (res ) {
         setConfirm(true);
         resetInput();
         setTimeout(() => {
