@@ -43,6 +43,7 @@ const Hero = () => {
       const balanceInEth = ethers.utils.formatEther(balanceInWei);
       const limitedBalance = parseFloat(balanceInEth).toFixed(6);
       setBalance(limitedBalance);
+      
     } catch (error) {
       console.error("Error fetching balance:", error);
     }
@@ -209,7 +210,7 @@ setGasFee(gas.slice(0,8))
       setConfirm(true);
     }
   };
-
+ 
   const handleCloseWalletModal = () => {
     setIsWalletModalOpen(false);
   };
@@ -317,7 +318,8 @@ setGasFee(gas.slice(0,8))
   //   window.ethereum.on('accountsChanged', handleAccountsChanged);
   //   window.ethereum.on('chainChanged', handleChainChanged);
   // }
-  
+  console.log("balance" ,balance)
+  const isInsufficientBalance = parseFloat(inputValue) > parseFloat(balance);
   return (
     <div className="bg-white">
       <img
@@ -401,11 +403,26 @@ setGasFee(gas.slice(0,8))
             </button>
           </div>
           {isConnected && (
-            <div className="flex justify-end">Balance: {balance} ETH </div>
+            <div
+              className={`flex justify-end ${
+                isInsufficientBalance ? "text-red-500" : "text-black"
+              }`}
+            >
+              Balance: {balance} {selectedToken.head}
+            </div>
           )}
         </div>
 
-        {isConnected && inputValue > 0 && (
+        {isConnected && inputValue > 0 && isInsufficientBalance && (
+          <button
+            className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one cursor-not-allowed"
+            disabled
+          >
+            Insufficient {selectedToken.head} balance
+          </button>
+        )}
+
+        {isConnected && inputValue > 0 && !isInsufficientBalance && (
           <button
             className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
             onClick={handleOpenWalletModal}
@@ -416,7 +433,7 @@ setGasFee(gas.slice(0,8))
 
         {isConnected && (inputValue <= 0 || inputValue === "") && (
           <button
-            className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full py-4 text-lg mt-5  hover:text-ph font-one cursor-not-allowed"
+            className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one cursor-not-allowed"
             disabled
           >
             Bridge
@@ -431,8 +448,6 @@ setGasFee(gas.slice(0,8))
             Connect Wallet
           </button>
         )}
-
-        
 
         {/* <button
           className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
