@@ -317,6 +317,7 @@ setGasFee(gas.slice(0,8))
   //   window.ethereum.on('accountsChanged', handleAccountsChanged);
   //   window.ethereum.on('chainChanged', handleChainChanged);
   // }
+  
   return (
     <div className="bg-white">
       <img
@@ -404,7 +405,7 @@ setGasFee(gas.slice(0,8))
           )}
         </div>
 
-        {isConnected && inputValue.length > 0 && (
+        {isConnected && inputValue > 0 && (
           <button
             className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
             onClick={handleOpenWalletModal}
@@ -412,7 +413,8 @@ setGasFee(gas.slice(0,8))
             Bridge
           </button>
         )}
-        {isConnected && inputValue.length == 0 && (
+
+        {isConnected && (inputValue <= 0 || inputValue === "") && (
           <button
             className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full py-4 text-lg mt-5  hover:text-ph font-one cursor-not-allowed"
             disabled
@@ -420,6 +422,7 @@ setGasFee(gas.slice(0,8))
             Bridge
           </button>
         )}
+
         {!isConnected && (
           <button
             className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
@@ -428,6 +431,8 @@ setGasFee(gas.slice(0,8))
             Connect Wallet
           </button>
         )}
+
+        
 
         {/* <button
           className="bg-black text-white font-bold w-full rounded-full py-4 text-lg mt-5 hover:text-ph font-one"
