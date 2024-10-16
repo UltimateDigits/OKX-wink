@@ -71,7 +71,7 @@ const ConfirmTransaction = ({
   return (
     <div>
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-5">
-        <div className="bg-white relative border-b border-[#989898] w-[400px] rounded-md p-5">
+        <div className="bg-white relative border-b border-[#989898] w-full m-3 sm:w-[400px] rounded-md px-5 py-2 sm:p-5">
           {confirm ? (
             <Successfull />
           ) : transactionError ? (
@@ -82,7 +82,7 @@ const ConfirmTransaction = ({
                 Confirm transaction
               </h1>
 
-              <div className="flex justify-between items-center border-2 border-bor rounded-lg px-3 py-4 mt-5">
+              <div className="flex justify-between items-center border-2 border-bor rounded-lg px-3 py-4 mt-3 sm:mt-5">
                 <div className="flex gap-2">
                   <img
                     src={isEthereum ? ethhero : okxhero}
@@ -125,7 +125,7 @@ const ConfirmTransaction = ({
                 </div>
               </div>
 
-              <div className="flex justify-between items-center mt-7">
+              <div className="flex justify-between gap-6 items-center mt-5 sm:mt-7">
                 <p className="text-left text-[#989898] font-two font-medium text-sm">
                   Ethereum network fee
                 </p>
@@ -147,7 +147,7 @@ const ConfirmTransaction = ({
                 <p className="text-right font-two text-sm">15 minutes</p>
               </div>
 
-              <div className="mt-7 flex justify-between items-center gap-4">
+              <div className="mt-5 sm:mt-7 flex justify-between items-center gap-4">
                 <button
                   onClick={onClose}
                   className="bg-[#F5F5F5] hover:bg-black text-black font-bold py-2 w-full border border-black hover:text-white rounded-full"

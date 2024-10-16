@@ -89,7 +89,7 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
             )}
           </div>
 
-          <div className="flex flex-col overflow-y-scroll sm:overflow-y-hidden">
+          <div className="flex flex-col ">
             {inputValue && filteredOptions.length === 0 && (
               <div className="flex flex-col items-center justify-center pt-7 sm:pt-20">
                 <img src={notfound} alt="" className="w-[100px] h-[100px] " />
@@ -114,7 +114,7 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
                     alt=""
                     className="sm:h-[30px] sm:w-[30px] h-[20px] w-[20px]"
                   />
-                  <div className="sm:leading-5">
+                  <div className="sm:leading-5 items-center">
                     <p className="text-left font-four sm:text-[16px] text-xs  font-medium">
                       {option.head}
                     </p>

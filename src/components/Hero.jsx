@@ -442,16 +442,16 @@ setGasFee(gas.slice(0,8))
           )}
         </div>
 
-        {isConnected && inputValue > 0 && isInsufficientBalance && (
+        {/* {isConnected && inputValue > 0 && isInsufficientBalance && (
           <button
             className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full  text-base sm:text-lg py-2 sm:py-4 mt-2 sm:mt-5 hover:text-ph font-one cursor-not-allowed"
             disabled
           >
             Insufficient {selectedToken.head} balance
           </button>
-        )}
+        )} */}
 
-        {isConnected && inputValue > 0 && !isInsufficientBalance && (
+        {isConnected && inputValue > 0 && isInsufficientBalance && (
           <button
             className="bg-black text-white font-bold w-full rounded-full  text-base sm:text-lg py-2 sm:py-4 mt-2 sm:mt-5 hover:text-ph font-one"
             onClick={handleOpenWalletModal}
