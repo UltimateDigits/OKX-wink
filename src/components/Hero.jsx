@@ -12,13 +12,14 @@ import { useDisconnect } from 'wagmi'
 import { config } from "../App";
 import { GetBalance, GetGas } from "../integration";
 import { useSwitchChain } from 'wagmi'
-
+import axios from "axios";
 const Hero = () => {
   const { disconnect } = useDisconnect()
   const [Confirm, setConfirm] = useState(false);
   const [isEthereum, setIsEthereum] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
+  const [gasInDollor, setGasInDollor] = useState("")
   const [selectedToken, setSelectedToken] = useState({
     image: okxinput,
     head: "OKB",
@@ -191,12 +192,40 @@ if(isEthereum && network.name === "xlayer"){
     try {
       const res = await GetGas();
       console.log("gas fee", res);
+    // const val = await  convertCurrency()
+    // const usdEquivalent = res * val.data;
+    // console.log("USD Equivalent of Gas Fee:", usdEquivalent);
+    // setGasInDollor(parseFloat(usdEquivalent.toFixed(4)))
       return res;
       
     } catch (error) {
       
     }
   }
+
+  const convertCurrency = async () => {
+    try {
+        const response = await axios.post(
+            'https://api.apyhub.com/data/convert/currency',
+            {
+                source: 'eth',
+                target: 'usd',
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apy-token': 'APY0sM431Oy9vafZ3vLmulFTG5tyWoxek8zCcopTHPVxlHK4Y00cA1vgE64LCuqwcaIqJWX', // replace {{token}} with your actual token
+                },
+            }
+        );
+
+        console.log('Conversion Response:', response.data);
+        return response.data; // Handle the response as needed
+    } catch (error) {
+        console.error('Error converting currency:', error);
+        throw error; // Handle the error as needed
+    }
+};
 
   const handleOpenWalletModal = async () => {
     if (!isConnected) {
@@ -465,6 +494,7 @@ setGasFee(gas.slice(0,8))
             value={inputValue}
             account={account}
             resetInput={resetInput}
+            inDollor={gasInDollor}
           />
         )}
 

@@ -121,7 +121,7 @@ const ConfirmTransaction = ({
                   <h1 className="font-bold text-xl leading-5 font-one text-right">
                     {value}
                   </h1>
-                  <p className="text-right text-[#989898] font-two">$0.02</p>
+                  {/* <p className="text-right text-[#989898] font-two">$0.02</p> */}
                 </div>
               </div>
 
@@ -135,7 +135,7 @@ const ConfirmTransaction = ({
                   </p>
                   <PiApproximateEqualsBold className="text-[12px] text-[#989898]" />
                   <p className="text-right text-[#989898] font-two text-sm">
-                    $5.03
+                    ${inDollor}
                   </p>
                 </div>
               </div>

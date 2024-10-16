@@ -124,12 +124,12 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
                   </div>
                 </div>
 
-                <div>
+                {/* <div>
                   <p className="text-right font-four font-medium">0.00</p>
                   <p className="text-[12px] text-right text-[#989898] font-two">
                     0.00
                   </p>
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
