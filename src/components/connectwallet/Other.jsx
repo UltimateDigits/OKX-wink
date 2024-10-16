@@ -71,7 +71,7 @@ const Other = ({onClose,isConnected}) => {
 
 
   return (
-    <div className="px-[32px] pt-6">
+    <div className="px-[32px] pt-3 sm:pt-6">
       {/* <div
         className="w-[153px] h-[118px] flex flex-col items-center border rounded-2xl justify-center hover:border-ph hover:border-2 cursor-pointer"
         onClick={handleConnectMetaMask}

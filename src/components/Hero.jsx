@@ -354,10 +354,10 @@ setGasFee(gas.slice(0,8))
       <img
         src={herologo}
         alt=""
-        className="bg-black p-[5px] rounded-md h-[25px] sm:h-[37px] w-[67px] sm:w-[87px] mx-auto mb-2 sm:mb-4"
+        className="bg-black p-[5px] rounded-md h-[20px] sm:h-[37px] w-[50px] sm:w-[87px] mx-auto mb-2 sm:mb-4"
       />
 
-      <div className="border border-bor rounded-lg shadow-md sm:px-7 px-2 m-3 py-3 sm:w-[496px] w-fit ">
+      <div className="border border-bor rounded-lg shadow-md sm:px-7 px-2 m-1 mx-3 sm:m-3 py-3 sm:w-[496px] w-fit ">
         <h1 className="font-bold text-xl sm:text-2xl leading-8 text-left font-one">
           Bridge
         </h1>
@@ -373,7 +373,7 @@ setGasFee(gas.slice(0,8))
           )}
         </div>
         <div className="flex gap-2 items-center mt-2 sm:mt-5">
-          <div className="bg-empty rounded-md py-[8px] sm:p-[18px] px-[14px] w-1/2 flex items-center gap-2">
+          <div className="bg-empty rounded-md py-[6px] sm:p-[18px] px-[14px] w-1/2 flex items-center gap-2">
             <img
               src={isEthereum ? ethhero : okxhero}
               alt=""
@@ -389,7 +389,7 @@ setGasFee(gas.slice(0,8))
           >
             <Exchange />
           </button>
-          <div className="bg-empty rounded-md py-[8px] sm:p-[18px] px-[14px] w-1/2 flex items-center gap-2">
+          <div className="bg-empty rounded-md py-[6px] sm:p-[18px] px-[14px] w-1/2 flex items-center gap-2">
             <img
               src={isEthereum ? okxhero : ethhero}
               alt=""
@@ -401,14 +401,14 @@ setGasFee(gas.slice(0,8))
           </div>
         </div>
 
-        <div className="bg-empty rounded-[8px] mt-3 sm:mt-5 p-1 sm:p-2 px-[16px] flex-col items-center">
+        <div className="bg-empty rounded-[8px] mt-2 sm:mt-5 py-0.5 sm:p-2 px-[16px] flex-col items-center">
           <div className="flex items-center">
             <input
               type="text"
               placeholder="0.00"
               value={inputValue}
               onChange={handleInputChange}
-              className="bg-empty flex-1 text-[36px] overflow-hidden pr-1.5 truncate w-full font-bold border-none p-1 sm:p-2 focus:outline-none focus:ring-0 input-caret"
+              className="bg-empty flex-1 text-[36px] overflow-hidden pr-1.5 truncate w-full font-bold border-none px-1 py-0.5 sm:p-2 focus:outline-none focus:ring-0 input-caret"
             />
             <button
               className="ml-2 bg-white rounded-md pl-2 h-fit text-black flex items-center px-1 py-2 sm:py-3"
@@ -444,7 +444,7 @@ setGasFee(gas.slice(0,8))
 
         {isConnected && inputValue > 0 && isInsufficientBalance && (
           <button
-            className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full  text-base sm:text-lg py-2 sm:py-4 mt-3 sm:mt-5 hover:text-ph font-one cursor-not-allowed"
+            className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full  text-base sm:text-lg py-2 sm:py-4 mt-2 sm:mt-5 hover:text-ph font-one cursor-not-allowed"
             disabled
           >
             Insufficient {selectedToken.head} balance
@@ -453,7 +453,7 @@ setGasFee(gas.slice(0,8))
 
         {isConnected && inputValue > 0 && !isInsufficientBalance && (
           <button
-            className="bg-black text-white font-bold w-full rounded-full  text-base sm:text-lg py-2 sm:py-4 mt-3 sm:mt-5 hover:text-ph font-one"
+            className="bg-black text-white font-bold w-full rounded-full  text-base sm:text-lg py-2 sm:py-4 mt-2 sm:mt-5 hover:text-ph font-one"
             onClick={handleOpenWalletModal}
           >
             Bridge
@@ -462,7 +462,7 @@ setGasFee(gas.slice(0,8))
 
         {isConnected && (inputValue <= 0 || inputValue === "") && (
           <button
-            className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full text-base sm:text-lg py-2 sm:py-4 mt-3 sm:mt-5 hover:text-ph font-one cursor-not-allowed"
+            className="bg-empty text-black text-opacity-20 font-bold w-full rounded-full text-base sm:text-lg py-2 sm:py-4 mt-2 sm:mt-5 hover:text-ph font-one cursor-not-allowed"
             disabled
           >
             Bridge
@@ -471,7 +471,7 @@ setGasFee(gas.slice(0,8))
 
         {!isConnected && (
           <button
-            className="bg-black text-white font-bold w-full rounded-full py-2 sm:py-4 mt-3 sm:mt-5 text-base sm:text-lg  hover:text-ph font-one"
+            className="bg-black text-white font-bold w-full rounded-full py-2 sm:py-4 mt-2 sm:mt-5 text-base sm:text-lg  hover:text-ph font-one"
             onClick={handleOpenWalletModal}
           >
             Connect Wallet

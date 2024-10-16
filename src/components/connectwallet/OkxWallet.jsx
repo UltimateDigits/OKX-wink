@@ -34,7 +34,7 @@ const OkxWallet = ({ onClose, isConnected }) => {
 
 
   return (
-    <div className="px-[32px] pt-6">
+    <div className="px-[32px] pt-3 sm:pt-6">
 
       <div className="flex ">
         <button

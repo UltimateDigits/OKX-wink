@@ -10,9 +10,9 @@ const ConnectWallet = ({ isOpen, onClose,isConnected }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-5 ">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-2 sm:py-5 ">
       <div className="bg-white relative border-b border-[#989898] w-full m-3 sm:w-[500px] h-full rounded-3xl ">
-        <div className="pt-[43px] pr-[32px] pb-[37px] pl-[32px]">
+        <div className="pt-[30px] sm:pt-[43px] pr-[25px] sm:pr-[32px] pb-[27px] sm:pb-[37px] pl-[25px] sm:pl-[32px]">
           <h2 className="text-[20px] sm:text-[32px] font-bold leading-[132%] mb-2 text-left font-one">
             Connect Wallet
           </h2>
