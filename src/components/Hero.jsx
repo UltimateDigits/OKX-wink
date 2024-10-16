@@ -433,7 +433,7 @@ setGasFee(gas.slice(0,8))
           </div>
           {isConnected && (
             <div
-              className={`flex justify-end text-sm sm:text-base ${
+              className={`flex justify-end text-xs sm:text-base ${
                 isInsufficientBalance ? "text-red-500" : "text-black"
               }`}
             >
