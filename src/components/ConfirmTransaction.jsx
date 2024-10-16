@@ -71,7 +71,7 @@ const ConfirmTransaction = ({
   return (
     <div>
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-5">
-        <div className="bg-white relative border-b border-[#989898] w-full m-3 sm:w-[400px] rounded-md px-5 py-2 sm:p-5">
+        <div className="bg-white relative border-b border-[#989898] w-full m-3 my-3 sm:w-[400px] rounded-md px-5 py-2 sm:p-5">
           {confirm ? (
             <Successfull />
           ) : transactionError ? (
@@ -82,14 +82,14 @@ const ConfirmTransaction = ({
                 Confirm transaction
               </h1>
 
-              <div className="flex justify-between items-center border-2 border-bor rounded-lg px-3 py-4 mt-3 sm:mt-5">
+              <div className="flex justify-between items-center border-2 border-bor rounded-lg px-3 py-2 sm:py-4 mt-3 sm:mt-5">
                 <div className="flex gap-2">
                   <img
                     src={isEthereum ? ethhero : okxhero}
                     alt=""
                     className="h-[20px] w-[20px]"
                   />
-                  <p className="font-bold text-base leading-5 font-one">
+                  <p className="font-bold text-sm sm:text-base leading-5 font-one">
                     {isEthereum ? "Ethereum" : "X Layer"}
                   </p>
                 </div>
@@ -100,32 +100,32 @@ const ConfirmTransaction = ({
                     alt=""
                     className="h-[20px] w-[20px]"
                   />
-                  <p className="font-bold text-base leading-5 font-one">
+                  <p className="font-bold text-sm sm:text-base leading-5 font-one">
                     {!isEthereum ? "Ethereum" : "X Layer"}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between bg-empty rounded-lg p-4 mt-4">
+              <div className="flex items-center justify-between bg-empty rounded-lg py-2 px-4 sm:p-4 mt-4">
                 <div className="flex gap-3 items-center">
                   <img
                     src={tokenAddress.image}
                     alt=""
-                    className="h-[30px] w-[30px]"
+                    className="sm:h-[30px] h-[20px] sm:w-[30px] w-[20px]"
                   />
-                  <p className="font-bold text-lg leading-5 font-one">
+                  <p className="font-bold text-base sm:text-lg leading-5 font-one">
                     {tokenAddress.head}
                   </p>
                 </div>
                 <div>
-                  <h1 className="font-bold text-xl leading-5 font-one text-right">
+                  <h1 className="font-bold text-lg sm:text-xl leading-5 font-one text-right">
                     {value}
                   </h1>
                   {/* <p className="text-right text-[#989898] font-two">$0.02</p> */}
                 </div>
               </div>
 
-              <div className="flex justify-between gap-6 items-center mt-5 sm:mt-7">
+              <div className="flex justify-between gap-6 items-center mt-3 sm:mt-7">
                 <p className="text-left text-[#989898] font-two font-medium text-sm">
                   Ethereum network fee
                 </p>
@@ -147,18 +147,18 @@ const ConfirmTransaction = ({
                 <p className="text-right font-two text-sm">15 minutes</p>
               </div>
 
-              <div className="mt-5 sm:mt-7 flex justify-between items-center gap-4">
+              <div className="mt-4 sm:mt-7 flex justify-between items-center gap-4">
                 <button
                   onClick={onClose}
-                  className="bg-[#F5F5F5] hover:bg-black text-black font-bold py-2 w-full border border-black hover:text-white rounded-full"
+                  className="bg-[#F5F5F5] hover:bg-black text-black font-bold py-1 sm:py-2 w-full border border-black hover:text-white rounded-full"
                 >
                   Cancel
                 </button>
 
                 <button
-                  className="bg-black hover:bg-white text-white hover:text-black font-bold py-2 w-full border border-black rounded-full"
+                  className="bg-black hover:bg-white text-white hover:text-black font-bold py-1 sm:py-2 w-full border border-black rounded-full"
                   onClick={handleTransaction}
-                  disabled={isProcessing} 
+                  disabled={isProcessing}
                 >
                   {isProcessing ? "Processing..." : "Confirm"}
                 </button>
