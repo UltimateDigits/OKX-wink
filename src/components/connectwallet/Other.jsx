@@ -84,15 +84,18 @@ const Other = ({onClose,isConnected}) => {
 
       <div className="flex ">
         <button
-          className="w-[153px] h-[118px] flex flex-col items-center border rounded-2xl justify-center hover:border-ph hover:border-2 cursor-pointer"
+          className="w-[100px] h-[90px] sm:w-[153px] sm:h-[118px] flex flex-col items-center border rounded-2xl justify-center hover:border-ph hover:border-2 cursor-pointer"
           onClick={handleConnectMetaMask}
         >
-          <img src={metamask} alt="" className="h-[48px] w-[48px]" />
-          <p className="text-[#3d3d3d] text-[15px] font-medium leading-5 mb-2 mt-1 text-center font-four">
+          <img
+            src={metamask}
+            alt=""
+            className="sm:h-[48px] sm:w-[48px] h-[32px] w-[32px]"
+          />
+          <p className="text-[#3d3d3d] sm:text-[15px] text-sm font-medium leading-5 sm:mb-2 mt-1 text-center font-four">
             MetaMask
           </p>
         </button>
-        
       </div>
       {/* <WalletButton wallet="metamask" /> */}
       {/* <WalletButton wallet="okx" /> */}
