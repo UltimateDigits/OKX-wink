@@ -365,7 +365,7 @@ setGasFee(gas.slice(0,8))
         <div className="flex justify-end">
           {isConnected && (
             <button
-              className="py-3 px-4 bg-red-700 rounded-lg text-white font-bold font-one"
+              className="py-1 sm:py-3 px-2 sm:px-4 bg-red-700 rounded-lg text-white font-bold font-one"
               onClick={disconnectWallet}
             >
               Disconnect
@@ -373,13 +373,13 @@ setGasFee(gas.slice(0,8))
           )}
         </div>
         <div className="flex gap-2 items-center mt-2 sm:mt-5">
-          <div className="bg-empty rounded-md py-[10px] sm:p-[18px] px-[14px] w-1/2 flex items-center gap-2">
+          <div className="bg-empty rounded-md py-[8px] sm:p-[18px] px-[14px] w-1/2 flex items-center gap-2">
             <img
               src={isEthereum ? ethhero : okxhero}
               alt=""
               className="h-[20px] w-[20px]"
             />
-            <p className="font-bold text-base leading-5 font-one">
+            <p className="font-bold text-sm sm:text-base leading-5 font-one">
               {isEthereum ? "Ethereum" : "X Layer"}
             </p>
           </div>
@@ -389,13 +389,13 @@ setGasFee(gas.slice(0,8))
           >
             <Exchange />
           </button>
-          <div className="bg-empty rounded-md py-[10px] sm:p-[18px] px-[14px] w-1/2 flex items-center gap-2">
+          <div className="bg-empty rounded-md py-[8px] sm:p-[18px] px-[14px] w-1/2 flex items-center gap-2">
             <img
               src={isEthereum ? okxhero : ethhero}
               alt=""
               className="h-[20px] w-[20px]"
             />
-            <p className="font-bold text-base leading-5 font-one">
+            <p className="font-bold text-sm sm:text-base leading-5 font-one">
               {isEthereum ? "X Layer" : "Ethereum"}
             </p>
           </div>
@@ -433,7 +433,7 @@ setGasFee(gas.slice(0,8))
           </div>
           {isConnected && (
             <div
-              className={`flex justify-end ${
+              className={`flex justify-end text-sm sm:text-base ${
                 isInsufficientBalance ? "text-red-500" : "text-black"
               }`}
             >
