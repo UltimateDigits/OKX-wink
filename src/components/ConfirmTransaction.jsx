@@ -125,26 +125,28 @@ const ConfirmTransaction = ({
                 </div>
               </div>
 
-              <div className="flex justify-between gap-6 items-center mt-3 sm:mt-7">
-                <p className="text-left text-[#989898] font-two font-medium text-sm">
+              <div className="flex justify-between gap-2 items-center mt-3 sm:mt-7">
+                <p className="text-left text-[#989898] font-two font-medium text-xs sm:text-sm">
                   Ethereum network fee
                 </p>
                 <div className="flex items-center gap-1">
-                  <p className="text-right font-two text-sm">
+                  <p className="text-right font-two text-xs sm:text-sm">
                     {networkFee} ETH
                   </p>
-                  <PiApproximateEqualsBold className="text-[12px] text-[#989898]" />
-                  <p className="text-right text-[#989898] font-two text-sm">
+                  <PiApproximateEqualsBold className="text-[10px] sm:text-[12px] text-[#989898]" />
+                  <p className="text-right text-[#989898] font-two text-xs sm:text-sm">
                     ${inDollor}
                   </p>
                 </div>
               </div>
 
               <div className="flex justify-between items-center mt-1">
-                <p className="text-left text-[#989898] font-two font-medium text-sm">
+                <p className="text-left text-[#989898] font-two font-medium text-xs sm:text-sm">
                   Est arrival time
                 </p>
-                <p className="text-right font-two text-sm">15 minutes</p>
+                <p className="text-right font-two text-xs sm:text-sm">
+                  15 minutes
+                </p>
               </div>
 
               <div className="mt-4 sm:mt-7 flex justify-between items-center gap-4">
