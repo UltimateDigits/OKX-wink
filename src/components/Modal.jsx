@@ -45,13 +45,13 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 py-2 font-custom ">
-      <div className="bg-white rounded-lg relative border-b border-[#989898] w-[400px] h-full">
-        <div className="flex items-center justify-between p-3 px-6 border-b-2 border-bor">
-          <p className="text-left font-semibold text-[#0b0b0b] font-two">
+      <div className="bg-white rounded-lg relative border-b border-[#989898] w-full m-2 sm:w-[400px] h-full">
+        <div className="flex items-center justify-between py-1.5 sm:p-3 px-6 border-b-2 border-bor">
+          <p className="text-left font-semibold text-[#0b0b0b] text-sm sm:text-base font-two">
             Select token
           </p>
           <button
-            className="text-[#989898] font-semibold text-2xl hover:text-black hover:bg-modem rounded-md"
+            className="text-[#989898] font-semibold text-lg sm:text-2xl hover:text-black hover:bg-modem rounded-md"
             onClick={onClose}
           >
             <VscClose />
@@ -59,19 +59,19 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
         </div>
         <div>
           <div
-            className={`group flex items-center bg-modem mx-6 mt-5 mb-4 
+            className={`group flex items-center bg-modem mx-6 mt-2 sm:mt-5 mb-2 sm:mb-4 
   ${
     isFocused || inputValue
       ? "border-black border-[1px] bg-white outline outline-gray-200"
       : "border-modem border-[2px] hover:border-bor hover:border-[2px]"
   }
-  rounded-lg px-4 py-3 transition duration-300 hover:bg-white`}
+  rounded-lg px-4 py-1 sm:py-3 transition duration-300 hover:bg-white`}
           >
-            <LuSearch className="text-gray-400 mr-4 text-xl" />
+            <LuSearch className="text-gray-400 mr-4 text-lg sm:text-xl" />
             <input
               type="text"
               placeholder="Search by token name or address"
-              className={`outline-none border-none w-full font-light bg-modem text-[14px] transition duration-300 font-two ${
+              className={`outline-none border-none w-full font-light bg-modem text-[10px] sm:text-[14px] transition duration-300 font-two ${
                 isFocused || inputValue
                   ? "text-black bg-white"
                   : "bg-modem text-gray-500 group-hover:bg-white group-hover:text-black"
@@ -89,9 +89,9 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
             )}
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col overflow-y-scroll sm:overflow-y-hidden">
             {inputValue && filteredOptions.length === 0 && (
-              <div className="flex flex-col items-center justify-center pt-20">
+              <div className="flex flex-col items-center justify-center pt-7 sm:pt-20">
                 <img src={notfound} alt="" className="w-[100px] h-[100px] " />
                 <p className="text-center text-black text-two font-semibold">
                   No results found
@@ -101,7 +101,7 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
             {filteredOptions.map((option) => (
               <div
                 key={option.id}
-                className={`flex mx-3 px-3 gap-3 items-center justify-between  rounded-md py-[8px] ${
+                className={`flex mx-3 px-3 gap-3 items-center justify-between  rounded-md py-[4px]  sm:py-[8px] ${
                   option.head === selectedToken?.head
                     ? "bg-modem"
                     : "hover:bg-modem"
@@ -112,21 +112,21 @@ const Modal = ({ isOpen, onClose, onTokenSelect, selectedToken,balance }) => {
                   <img
                     src={option.image}
                     alt=""
-                    className="h-[30px] w-[30px]"
+                    className="sm:h-[30px] sm:w-[30px] h-[20px] w-[20px]"
                   />
-                  <div className="leading-5">
-                    <p className="text-left font-four font-medium">
+                  <div className="sm:leading-5">
+                    <p className="text-left font-four sm:text-[16px] text-xs  font-medium">
                       {option.head}
                     </p>
-                    <p className="text-[12px] text-left text-[#989898] font-two">
+                    <p className="text-[8px] sm:text-[12px] text-left text-[#989898] font-two">
                       {option.desc}
                     </p>
                   </div>
                 </div>
 
                 {/* <div>
-                  <p className="text-right font-four font-medium">0.00</p>
-                  <p className="text-[12px] text-right text-[#989898] font-two">
+                  <p className="text-right font-four sm:text-base text-xs  font-medium">0.00</p>
+                  <p className="text-[8px] sm:text-[12px] text-right text-[#989898] font-two">
                     0.00
                   </p>
                 </div> */}
