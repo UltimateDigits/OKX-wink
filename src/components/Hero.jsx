@@ -357,7 +357,7 @@ setGasFee(gas.slice(0,8))
         className="bg-black p-[5px] rounded-md h-[37px] w-[87px] mx-auto mb-4"
       />
 
-      <div className="border border-bor rounded-lg shadow-md px-7 py-3 w-[496px] ">
+      <div className="border border-bor rounded-lg shadow-md sm:px-7 px-2 m-3 py-3 sm:w-[496px] w-fit ">
         <h1 className="font-bold text-2xl leading-8 text-left font-one">
           Bridge
         </h1>
