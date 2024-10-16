@@ -24,6 +24,9 @@ export default {
       fontSize: {
         "2xl": "24px",
       },
+      screens: {
+        sm: "450px", // Custom small screen starting from 450px
+      },
     },
   },
   plugins: [],
