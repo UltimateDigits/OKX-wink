@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import ConfirmTransaction from './components/ConfirmTransaction';
 import Successfull from './components/Successfull';
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
-import { getAnalytics, logEvent } from "firebase/analytics";
 
 import '@rainbow-me/rainbowkit/styles.css';
 import {
@@ -21,6 +20,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { analytics } from '../firebase';
+import { logEvent } from "firebase/analytics";
 
 const connectors = connectorsForWallets(
   [
@@ -46,6 +46,7 @@ export const config = getDefaultConfig({
 const queryClient = new QueryClient();
 
 function App() {
+  //log event
   useEffect(() => {
     logEvent(analytics, 'app_open', {
       appName: "OKX Winks",
