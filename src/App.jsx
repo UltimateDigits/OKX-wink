@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import Hero from './components/Hero';
 import ConfirmTransaction from './components/ConfirmTransaction';
 import Successfull from './components/Successfull';
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 import '@rainbow-me/rainbowkit/styles.css';
 import {
@@ -19,6 +20,7 @@ import {
   QueryClientProvider,
   QueryClient,
 } from "@tanstack/react-query";
+import { analytics } from '../firebase';
 
 const connectors = connectorsForWallets(
   [
@@ -43,9 +45,13 @@ export const config = getDefaultConfig({
 
 const queryClient = new QueryClient();
 
-
 function App() {
-  
+  useEffect(() => {
+    logEvent(analytics, 'app_open', {
+      appName: "OKX Winks",
+      openTime: new Date().toISOString(),
+    });
+  }, []);
 
   return (
     <>
