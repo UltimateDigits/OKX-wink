@@ -10,7 +10,7 @@ import { ethers } from "ethers";
 import ConfirmTransaction from "./ConfirmTransaction";
 import { useDisconnect } from 'wagmi'
 import { config } from "../App";
-import { GetBalance, GetGas } from "../integration";
+import { ApproveToken, GetApproval, GetBalance, GetGas } from "../integration";
 import { useSwitchChain } from 'wagmi'
 import axios from "axios";
 const Hero = () => {
@@ -20,6 +20,7 @@ const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
   const [gasInDollor, setGasInDollor] = useState("")
+  const [needApproval, setNeedApproval] = useState(false)
   const [selectedToken, setSelectedToken] = useState({
     image: okxinput,
     head: "OKB",
@@ -349,6 +350,51 @@ setGasFee(gas.slice(0,8))
   // }
   console.log("balance" ,balance)
   const isInsufficientBalance = parseFloat(inputValue) > parseFloat(balance);
+
+  const checkApproval = async () => {
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_accounts",
+      });
+      const tokenAddress = isEthereum ? selectedToken.ETHaddress : selectedToken.Xaddress;
+
+
+      const val = await GetApproval(accounts[0], tokenAddress,isEthereum);
+      console.log("val",val);
+      if(Number(val) < 1000 ){
+setNeedApproval(true)
+      }
+      
+      
+    }
+    catch(error){
+      console.log("error in check apprival",error);
+
+    }
+  }
+
+
+  useEffect(()=>{
+    checkApproval()
+  },[inputValue])
+
+
+  const handleApprove = async() => {
+    try {
+      const tokenAddress = isEthereum ? selectedToken.ETHaddress : selectedToken.Xaddress;
+
+      const res =  await ApproveToken(tokenAddress);
+      console.log("res",res);
+      if(res){
+        setNeedApproval(false)
+      }
+      
+    } catch (error) {
+      console.log("error in apaporval", error);
+      
+    }
+  }
+
   return (
     <div className="bg-white">
       <img
@@ -451,12 +497,20 @@ setGasFee(gas.slice(0,8))
           </button>
         )}
 
-        {isConnected && inputValue > 0 && !isInsufficientBalance && (
+        {isConnected && inputValue > 0 && !isInsufficientBalance && !needApproval && (
           <button
             className="bg-black text-white font-bold w-full rounded-full  text-base sm:text-lg py-2 sm:py-4 mt-2 sm:mt-5 hover:text-ph font-one"
             onClick={handleOpenWalletModal}
           >
             Bridge
+          </button>
+        )}
+        {isConnected && inputValue > 0 && !isInsufficientBalance && needApproval && (
+          <button
+            className="bg-black text-white font-bold w-full rounded-full  text-base sm:text-lg py-2 sm:py-4 mt-2 sm:mt-5 hover:text-ph font-one"
+            onClick={handleApprove}
+          >
+            Approve
           </button>
         )}
 
